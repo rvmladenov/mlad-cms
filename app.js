@@ -9,7 +9,7 @@ var mongoose = require('mongoose');
 var appRoutes = require('./routes/app');
 
 var app = express();
-mongoose.connect('localhost:27017/node-angular');
+mongoose.connect('modata:modata123qwe@ds157187.mlab.com:57187/modata');
 
 // TODO: VIEW ENGINE - Do not need a view engine
 // view engine setup
