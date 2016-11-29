@@ -19,7 +19,7 @@
       "mobile": false,
       "styles": [
         "styles.scss",
-        "../node_modules/material-design-lite/dist/material.css",
+        "assets/material.min.css",
         "../node_modules/bootstrap/dist/css/bootstrap.css"
       ],
       "scripts": [

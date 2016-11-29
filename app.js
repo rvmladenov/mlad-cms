@@ -9,23 +9,20 @@ var mongoose = require('mongoose');
 var appRoutes = require('./routes/app');
 
 var app = express();
-mongoose.connect('modata:modata123qwe@ds157187.mlab.com:57187/modata');
+mongoose.connect('mongodb://rvm:13579@ds139567.mlab.com:39567/mlad-cms');
 
-// TODO: VIEW ENGINE - Do not need a view engine
 // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, './dist'));
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 
-// TODO: VIEW ENGINE - should stay only this one
-app.use(express.static(__dirname + '/views'));
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+//TODO uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'client/dist', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, './dist'))); // TODO: Will I need this
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -36,10 +33,12 @@ app.use(function (req, res, next) {
 
 app.use('/', appRoutes);
 
+// BIG TODO: ---- need to implement some sort of a routing system so when one copies an URL, it could go there, not be redirected to the index
+
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    return res.sendFile('./views/index');
+    return res.render('index');
 });
-
 
 module.exports = app;

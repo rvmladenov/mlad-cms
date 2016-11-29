@@ -3,3 +3,13 @@ body {
   padding-bottom: 40px;
   background-color: #eee !important;
 }
+
+.loading-indicator {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-height: 60px;
+}
