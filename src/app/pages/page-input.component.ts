@@ -1,31 +1,31 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 
-import { MessageService } from "./message.service";
-import { Message } from "./message.model";
+import { PageService } from "./page.service";
+import { Page } from "./page.model";
 
 @Component({
-    selector: 'app-message-input',
-    templateUrl: './message-input.component.html'
+    selector: 'page-input',
+    templateUrl: './page-input.component.html'
 })
-export class MessageInputComponent implements OnInit {
-    message: Message;
+export class PageInputComponent implements OnInit {
+    page: Page;
 
-    constructor(private messageService: MessageService) {}
+    constructor(private pageService: PageService) {}
 
     onSubmit(form: NgForm) {
-        if (this.message) {
+        if (this.page) {
             // Edit
-            this.message.content = form.value.content;
-            this.messageService.updateMessage(this.message)
+            this.page.title = form.value.title;
+            this.pageService.updatePage(this.page)
                 .subscribe(
                     result => console.log(result)
                 );
-            this.message = null;
+            this.page = null;
         } else {
             // Create
-            const message = new Message(form.value.content, 'Max');
-            this.messageService.addMessage(message)
+            const page = new Page(form.value.title, form.value.subtitle, form.value.text);
+            this.pageService.addPage(page)
                 .subscribe(
                     data => console.log(data),
                     // error => console.error(error)
@@ -35,13 +35,13 @@ export class MessageInputComponent implements OnInit {
     }
 
     onClear(form: NgForm) {
-        this.message = null;
+        this.page = null;
         form.resetForm();
     }
 
     ngOnInit() {
-        this.messageService.messageIsEdit.subscribe(
-            (message: Message) => this.message = message
+        this.pageService.pageIsEdit.subscribe(
+            (page: Page) => this.page = page
         );
     }
 }

@@ -1,17 +1,18 @@
 import { Component } from "@angular/core";
 
 @Component({
-    selector: 'app-messages',
+    selector: 'app-pages',
     template: `
-        <div class="row">
-            <app-message-input></app-message-input>
-        </div>
-        <hr>
-        <div class="row">
-            <app-message-list></app-message-list>
+        <header class="row spacing">
+            <nav class="col-md-8 col-md-offset-2">
+                <ul>
+                    <li routerLinkActive="active"><a [routerLink]="['auth']">Create new </a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="row spacing">
+           <router-outlet></router-outlet>
         </div>
     `
 })
-export class MessagesComponent {
-
-}
+export class PagesComponent {}

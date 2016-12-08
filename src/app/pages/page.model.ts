@@ -16,8 +16,7 @@ export class Page {
     modified_by: User;
     modified_dt: Date;
 
-    constructor(pageId: string, title: string, subtitle: string, text: string, status?: Status, category?: Category, lang?: string) {
-        this._id = pageId;
+    constructor(title: string, subtitle: string, text: string, status?: Status, category?: Category, lang?: string) {
         this.title = title;
         this.subtitle = subtitle;
         this.text = text;

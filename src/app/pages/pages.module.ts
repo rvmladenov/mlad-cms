@@ -2,25 +2,26 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { MessagesComponent } from "./messages.component";
-import { MessageListComponent } from "./message-list.component";
-import { MessageComponent } from "./message.component";
-import { MessageInputComponent } from "./message-input.component";
-import { MessageService } from "./message.service";
+import { PageInputComponent } from "./page-input.component";
+import { PageService } from "./page.service";
+import { PageListComponent } from './page-list.component';
+import { PageComponent } from './page.component';
+
+import { pageRouting } from './page.routing';
 
 @NgModule({
     declarations: [
-        MessagesComponent,
-        MessageListComponent,
-        MessageComponent,
-        MessageInputComponent
+        PageInputComponent,
+        PageListComponent,
+        PageComponent
     ],
     imports: [
         CommonModule,
-        FormsModule
+        FormsModule,
+        pageRouting
     ],
-    providers: [MessageService]
+    providers: [PageService]
 })
-export class MessageModule {
+export class PageModule {
 
 }

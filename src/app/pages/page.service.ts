@@ -10,15 +10,14 @@ import { API } from '../config/app.config';
 
 @Injectable()
 export class PageService {
-    private messages: Page[] = [];
-    messageIsEdit = new EventEmitter<Page>();
+    private pages: Page[] = [];
+    pageIsEdit = new EventEmitter<Page>();
     private pagesUrl: string = API.API_URL + '/' + API.API_PAGES;
 
-    constructor(private http: Http, private errorService: ErrorService) {
-    }
+    constructor(private http: Http, private errorService: ErrorService) {}
 
-    addMessage(message: Page) {
-        const body = JSON.stringify(message);
+    addPage(page: Page) {
+        const body = JSON.stringify(page);
         const headers = new Headers({'Content-Type': 'application/json'});
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
@@ -26,13 +25,13 @@ export class PageService {
         return this.http.post(this.pagesUrl + token, body, {headers: headers})
             .map((response: Response) => {
                 const result = response.json();
-                const message = new Message(
+                const page = new Page(
                     result.obj.content,
                     result.obj.user.firstName,
                     result.obj._id,
                     result.obj.user._id);
-                this.messages.push(message);
-                return message;
+                this.pages.push(page);
+                return page;
             })
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -40,21 +39,16 @@ export class PageService {
             });
     }
 
-    getMessages() {
+    getPages() {
         return this.http.get(this.pagesUrl)
             .map((response: Response) => {
-                const messages = response.json().obj;
-                let transformedMessages: Message[] = [];
-                for (let message of messages) {
-                    transformedMessages.push(new Message(
-                        message.content,
-                        message.user.firstName,
-                        message._id,
-                        message.user._id)
-                    );
+                const pages = response.json().obj;
+                let transformedPages: Page[] = [];
+                for (let page of pages) {
+                    transformedPages.push(new Page(page.title, page.subtitle, page.text, page.status, page.category, page.lang));
                 }
-                this.messages = transformedMessages;
-                return transformedMessages;
+                this.pages = transformedPages;
+                return transformedPages;
             })
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -62,17 +56,18 @@ export class PageService {
             });
     }
 
-    editMessage(message: Message) {
-        this.messageIsEdit.emit(message);
+    editPage(page: Page) {
+        // TODO: Will I need this ?
+        this.pageIsEdit.emit(page);
     }
 
-    updateMessage(message: Message) {
-        const body = JSON.stringify(message);
+    updatePage(page: Page) {
+        const body = JSON.stringify(page);
         const headers = new Headers({'Content-Type': 'application/json'});
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.patch(this.pagesUrl + message.messageId + token, body, {headers: headers})
+        return this.http.patch(this.pagesUrl + page._id + token, body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -80,14 +75,15 @@ export class PageService {
             });
     }
 
-    deleteMessage(message: Message) {
-        this.messages.splice(this.messages.indexOf(message), 1);
+    deletePage(page: Page) {
+        this.pages.splice(this.pages.indexOf(page), 1);
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.delete(this.pagesUrl + message.messageId + token)
+        return this.http.delete(this.pagesUrl + page._id + token)
             .map((response: Response) => response.json())
             .catch((error: Response) => {
+                //TODO: This functionality is repeated few times in this file - think of delegating this
                 this.errorService.handleError(error.json());
                 return Observable.throw(error.json());
             });

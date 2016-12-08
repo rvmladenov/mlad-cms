@@ -6,7 +6,7 @@ import { PageService } from "./page.service";
 import { AuthService } from '../auth/auth.service';
 
 @Component({
-    selector: 'app-page',
+    selector: 'page-edit',
     templateUrl: './page.component.html',
     styles: [`
         .author {
@@ -26,14 +26,14 @@ import { AuthService } from '../auth/auth.service';
 export class PageComponent {
     @Input() page: Page;
 
-    constructor(private messageService: PageService, private auth: AuthService) {}
+    constructor(private pageService: PageService, private auth: AuthService) {}
 
     onEdit() {
-        this.messageService.editMessage(this.page);
+        this.pageService.editPage(this.page);
     }
 
     onDelete() {
-        this.messageService.deleteMessage(this.page)
+        this.pageService.deletePage(this.page)
             .subscribe(
                 result => console.log(result)
             );

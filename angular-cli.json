@@ -19,7 +19,7 @@
       "mobile": false,
       "styles": [
         "styles.scss",
-        "assets/material.min.css",
+        "assets/material2.min.css",
         "../node_modules/bootstrap/dist/css/bootstrap.css"
       ],
       "scripts": [

@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 var appRoutes = require('./routes/app');
+var userRoutes = require('./routes/user');
+var pagesRoutes = require('./routes/pages');
 
 var app = express();
 mongoose.connect('mongodb://rvm:13579@ds139567.mlab.com:39567/mlad-cms');
@@ -22,7 +24,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, './dist'))); // TODO: Will I need this
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// TODO: Works as expected withouth this line - remove it if not using it
+// app.use(express.static(path.join(__dirname, './dist')));
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -31,7 +36,11 @@ app.use(function (req, res, next) {
     next();
 });
 
+// TODO: think of using "/api/" in front of all routes
 app.use('/', appRoutes);
+app.use('/user', userRoutes);
+app.use('/pages', pagesRoutes);
+
 
 // BIG TODO: ---- need to implement some sort of a routing system so when one copies an URL, it could go there, not be redirected to the index
 

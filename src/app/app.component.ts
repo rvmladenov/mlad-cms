@@ -1,17 +1,7 @@
 import { Component } from '@angular/core';
 
-import { AuthService } from './auth/auth.service';
-
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-mlad-cms',
+  templateUrl: './app.component.html'
 })
-export class AppComponent {
-
-  constructor(private auth: AuthService) {}
-
-  isAuthorized() {
-    return this.auth.isLoggedIn();
-  }
-}
+export class AppComponent { }

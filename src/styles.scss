@@ -1,15 +1,10 @@
 body {
-  padding-top: 40px;
-  padding-bottom: 40px;
   background-color: #eee !important;
 }
 
-.loading-indicator {
-    position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    max-height: 60px;
+
+/** MD Lite CSS fixes */
+
+label.mdl-textfield__label {
+      margin-bottom: 0 !important;
 }

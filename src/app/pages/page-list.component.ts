@@ -1,28 +1,26 @@
 import { Component, OnInit } from "@angular/core";
 
-import { Message } from "./message.model";
-import { MessageService } from "./message.service";
+import { Page } from "./page.model";
+import { PageService } from "./page.service";
 
 @Component({
-    selector: 'app-message-list',
+    selector: 'pages-list',
     template: `
         <div class="col-md-8 col-md-offset-2">
-            <app-message
-                   [message]="message"
-                    *ngFor="let message of messages"></app-message>
+            <page-edit [page]="page" *ngFor="let page of pages"></page-edit>
         </div>
     `
 })
-export class MessageListComponent implements OnInit {
-    messages: Message[];
+export class PageListComponent implements OnInit {
+    pages: Page[];
 
-    constructor(private messageService: MessageService) {}
+    constructor(private pageService: PageService) {}
 
     ngOnInit() {
-        this.messageService.getMessages()
+        this.pageService.getPages()
             .subscribe(
-                (messages: Message[]) => {
-                    this.messages = messages;
+                (pages: Page[]) => {
+                    this.pages = pages;
                 }
             );
     }

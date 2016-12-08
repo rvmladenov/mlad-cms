@@ -1,13 +1,3 @@
-<div *ngIf="!isAuthorized()" class="container">
-
-  <app-auth></app-auth>
-
-</div> <!-- /container -->
-
-<div *ngIf="isAuthorized()" class="container">
-
-  <h1>Vhod !</h1>
-
-</div> <!-- /container -->
+<router-outlet></router-outlet>
 
 <app-error></app-error>
