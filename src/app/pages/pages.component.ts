@@ -6,11 +6,11 @@ import { Component } from "@angular/core";
         <header class="row spacing">
             <nav class="col-md-8 col-md-offset-2">
                 <ul>
-                    <li routerLinkActive="active"><a [routerLink]="['auth']">Create new </a></li>
+                    <li routerLinkActive="active"><a [routerLink]="['/dashboard']">Create new </a></li>
                 </ul>
             </nav>
         </header>
-        <div class="row spacing">
+        <div>
            <router-outlet></router-outlet>
         </div>
     `

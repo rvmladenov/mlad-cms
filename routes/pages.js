@@ -7,7 +7,7 @@ var Page = require('../models/page');
 
 router.get('/', function (req, res, next) {
     Page.find()
-        .populate('user', 'firstName')
+        .populate('user', 'username')
         .exec(function (err, pages) {
             if (err) {
                 return res.status(500).json({

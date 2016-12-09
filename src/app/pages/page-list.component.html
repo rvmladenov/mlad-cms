@@ -1,0 +1,15 @@
+<table class="mdl-data-table mdl-js-data-table" id="pages-table">
+    <thead>
+        <tr>
+            <th class="pages-table-options">&nbsp;</th>
+            <th class="mdl-data-table__cell--non-numeric">Title</th>
+            <th class="mdl-data-table__cell--non-numeric">Status</th>
+            <th class="mdl-data-table__cell--non-numeric">Category</th>
+            <th class="mdl-data-table__cell--non-numeric">Language</th>
+            <th class="mdl-data-table__cell--non-numeric">Created By</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr page-edit [page]="page" *ngFor="let page of pages"></tr>
+    </tbody>
+</table>

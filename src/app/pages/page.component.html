@@ -1,14 +1,9 @@
-<article class="panel panel-default">
-    <div class="panel-body">
-        {{ page.title }}
-    </div>
-    <footer class="panel-footer">
-        <div class="author">
-            {{ page.subtitle }}
-        </div>
-        <div class="config" *ngIf="belongsToUser()">
-            <a (click)="onEdit()">Edit</a>
-            <a (click)="onDelete()">Delete</a>
-        </div>
-    </footer>
-</article>
+<td class="pages-table-options">
+    <a href=""><i class="material-icons">mode_edit</i></a>
+    <a href=""><i class="material-icons">delete_forever</i></a>
+</td>
+<td class="mdl-data-table__cell--non-numeric">{{page.title}}</td>
+<td class="mdl-data-table__cell--non-numeric">{{page.status}}</td>
+<td class="mdl-data-table__cell--non-numeric">{{" "+ page.category}}</td>
+<td class="mdl-data-table__cell--non-numeric">{{" "+ page.language}}</td>
+<td class="mdl-data-table__cell--non-numeric">{{" "+ page.username}}</td>

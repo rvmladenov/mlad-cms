@@ -10,7 +10,7 @@ declare var $: any;
     templateUrl: './error.component.html'
 })
 export class ErrorComponent implements OnInit {
-    error: Error;
+    error: Error = new Error("Server", "No response from server");
 
     constructor(private errorService: ErrorService) {}
 
@@ -18,7 +18,7 @@ export class ErrorComponent implements OnInit {
         this.errorService.errorOccurred
             .subscribe(
                 (error: Error) => {
-                    this.error = error;
+                    this.error = {title: error.title || this.error.title, message: error.message || this.error.message};
                     $('#dialog_error').modal('show');
                 }
             );

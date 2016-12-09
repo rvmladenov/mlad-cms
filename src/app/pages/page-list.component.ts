@@ -5,11 +5,12 @@ import { PageService } from "./page.service";
 
 @Component({
     selector: 'pages-list',
-    template: `
-        <div class="col-md-8 col-md-offset-2">
-            <page-edit [page]="page" *ngFor="let page of pages"></page-edit>
-        </div>
-    `
+    templateUrl: './page-list.component.html',
+    styles: [`
+        #pages-table {
+            width: 100%;
+        }
+    `]
 })
 export class PageListComponent implements OnInit {
     pages: Page[];

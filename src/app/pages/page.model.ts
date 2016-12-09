@@ -8,8 +8,9 @@ export class Page {
     subtitle: string;
     text: string;
     status: Status;
-    lang: string;
+    language: string;
     category: Category;
+    username: string;
 
     created_dt: Date;
     created_by: User;
@@ -22,6 +23,6 @@ export class Page {
         this.text = text;
         this.status = status || Status.NEW;
         this.category = category || null;
-        this.lang = lang || '';
+        this.language = lang || '';
     }
 }
