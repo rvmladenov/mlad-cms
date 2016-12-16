@@ -6,7 +6,7 @@ import { PageService } from "./page.service";
 import { AuthService } from '../auth/auth.service';
 
 @Component({
-    selector: '[page-edit]',
+    selector: '[page-info]',
     templateUrl: './page.component.html',
     styles: [`
         .pages-table-options {

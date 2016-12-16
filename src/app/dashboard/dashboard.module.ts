@@ -7,6 +7,8 @@ import { DashboardComponent } from "./dashboard.component";
 
 import { PagesComponent } from "../pages/pages.component";
 
+import { FileService } from "../share/file.service";
+
 @NgModule({
     declarations: [
         DashboardComponent,
@@ -16,6 +18,7 @@ import { PagesComponent } from "../pages/pages.component";
         CommonModule,
         ReactiveFormsModule,
         dashboardRouting
-    ]
+    ],
+    providers: [FileService]
 })
 export class DashboardModule {}

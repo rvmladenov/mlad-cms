@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 
 import { Page } from "./page.model";
 import { PageService } from "./page.service";
@@ -12,12 +12,10 @@ import { PageService } from "./page.service";
         }
     `]
 })
-export class PageListComponent implements OnInit {
+export class PageListComponent {
     pages: Page[];
 
-    constructor(private pageService: PageService) {}
-
-    ngOnInit() {
+    constructor(private pageService: PageService) {
         this.pageService.getPages()
             .subscribe(
                 (pages: Page[]) => {
@@ -25,4 +23,14 @@ export class PageListComponent implements OnInit {
                 }
             );
     }
+
+// TODO: Old Should be removed if not using it
+    // ngOnInit() {
+    //     this.pageService.getPages()
+    //         .subscribe(
+    //             (pages: Page[]) => {
+    //                 this.pages = pages;
+    //             }
+    //         );
+    // }
 }

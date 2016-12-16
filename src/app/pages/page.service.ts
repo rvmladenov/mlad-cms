@@ -26,10 +26,12 @@ export class PageService {
             .map((response: Response) => {
                 const result = response.json();
                 const page = new Page(
-                    result.obj.content,
-                    result.obj.user.firstName,
-                    result.obj._id,
-                    result.obj.user._id);
+                    result.obj.title,
+                    result.obj.subtitle,
+                    result.obj.text,
+                    result.obj.status,
+                    result.obj.category,
+                    result.obj.lang);
                 this.pages.push(page);
                 return page;
             })
@@ -49,6 +51,19 @@ export class PageService {
                 }
                 this.pages = transformedPages;
                 return transformedPages;
+            })
+            .catch((error: Response) => {
+                this.errorService.handleError(error.json());
+                return Observable.throw(error.json());
+            });
+    }
+    
+    getPage(pageId: String) {
+        return this.http.get(this.pagesUrl + pageId)
+            .map((response: Response) => {
+                const page = response.json().obj;
+                
+                return page;
             })
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());

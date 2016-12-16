@@ -1,3 +1,10 @@
+<header class="row spacing">
+    <nav class="col-md-8 col-md-offset-2">
+        <ul>
+            <li routerLinkActive="active"><a [routerLink]="['edit']">Create new</a></li>
+        </ul>
+    </nav>
+</header>
 <table class="mdl-data-table mdl-js-data-table" id="pages-table">
     <thead>
         <tr>
@@ -10,6 +17,6 @@
         </tr>
     </thead>
     <tbody>
-        <tr page-edit [page]="page" *ngFor="let page of pages"></tr>
+        <tr page-info [page]="page" *ngFor="let page of pages"></tr>
     </tbody>
 </table>

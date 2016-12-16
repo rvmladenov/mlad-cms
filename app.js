@@ -6,9 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+var fileUpload = require('express-fileupload');
+
 var appRoutes = require('./routes/app');
 var userRoutes = require('./routes/user');
 var pagesRoutes = require('./routes/pages');
+var fileUploadRoutes = require('./routes/file-upload');
 
 var app = express();
 mongoose.connect('mongodb://rvm:13579@ds139567.mlab.com:39567/mlad-cms');
@@ -26,6 +29,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'dist'))); // Needed so it can use index.html when express starts 
 
+/** Used for uploading files from "multipart forms" */
+app.use(fileUpload());
+
 // TODO: Works as expected withouth this line - remove it if not using it
 // app.use(express.static(path.join(__dirname, './dist')));
 
@@ -40,6 +46,7 @@ app.use(function (req, res, next) {
 app.use('/', appRoutes);
 app.use('/user', userRoutes);
 app.use('/pages', pagesRoutes);
+app.use('/file-upload', fileUploadRoutes);
 
 
 // BIG TODO: ---- need to implement some sort of a routing system so when one copies an URL, it could go there, not be redirected to the index

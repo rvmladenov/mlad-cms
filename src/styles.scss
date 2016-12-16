@@ -204,3 +204,26 @@ _:-ms-input-placeholder, :root .demo-graph {
 .mdl-layout__drawer .mdl-navigation {
   padding-top: 0;
 }
+
+/** Bootstrap 4 fixes */
+.row {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+/** ....page buttons navigation - should be moved to a separate directive  */
+.list-group-item {
+    position: relative;
+    display: inline-block !important;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: -1px;
+    background-color: inherit !important;
+    border: none !important;
+}
+
+.form-inline {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/** END bootstrap fixes */
