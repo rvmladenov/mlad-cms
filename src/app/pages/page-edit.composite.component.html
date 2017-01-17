@@ -2,7 +2,7 @@
     <nav class="col-xs-12">
         <ul class="list-group">
             <li class="list-group-item">
-                <a class="btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="handleOnSave()">Save</a>
+                <a class="btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="handleOnSave(pageInput.getData())">Save</a>
             </li>
             <li class="list-group-item float-xs-right">
                 <a class="btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" (click)="handleOnCancel()">Cancel</a>
@@ -13,12 +13,9 @@
 
 <section>
     <div class="row">
-        <page-input [page]="page"></page-input>
+        <page-input #pageInput [page]="page"></page-input>
     </div>
     <div class="row">
-        <simple-tiny 
-            [elementId]="tinyMceID" 
-            (onEditorKeyup)="keyupHandlerFunction($event)">
-        </simple-tiny>
+        <simple-tiny [elementId]="tinyMceID"></simple-tiny>
     </div>
 </section>

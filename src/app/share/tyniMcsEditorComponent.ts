@@ -13,7 +13,7 @@ declare var tinymce: any;
 
 @Component({
   selector: 'simple-tiny',
-  template: `<textarea id="{{elementId}}"></textarea>`
+  template: `<textarea id="{{elementId}}" class="tinymce-editor"></textarea>`
 })
 export class SimpleTinyComponent implements AfterViewInit, OnDestroy {
   @Input() elementId: String;

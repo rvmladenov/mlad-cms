@@ -6,7 +6,7 @@ import { PageInputComponent } from "./page-input.component";
 import { PageService } from "./page.service";
 import { PageListComponent } from './page-list.component';
 import { PageComponent } from './page.component';
-import { PageEditComponent } from './page-edit.component';
+import { PageEditCompositeComponent } from './page-edit.composite.component';
 
 import { pageRouting } from './page.routing';
 
@@ -17,7 +17,7 @@ import { SimpleTinyComponent } from '../share/tyniMcsEditorComponent';
         PageInputComponent,
         PageListComponent,
         PageComponent,
-        PageEditComponent,
+        PageEditCompositeComponent,
         SimpleTinyComponent
     ],
     imports: [

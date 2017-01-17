@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, Output, OnInit, Input, EventEmitter } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 import { PageService } from "./page.service";
@@ -10,37 +10,25 @@ import { Page } from "./page.model";
 })
 export class PageInputComponent implements OnInit {
     @Input() page: Page;
+
+    private changes = {title: '', subtitle: ''};
     myForm: FormGroup;
 
     constructor(private pageService: PageService) {}
 
-// TODO: Old Code
-    // onSubmit(form: NgForm) {
-    //     if (this.page) {
-    //         // Edit
-    //         this.page.title = form.value.title;
-    //         this.pageService.updatePage(this.page)
-    //             .subscribe(
-    //                 result => console.log(result)
-    //             );
-    //         this.page = null;
-    //     } else {
-    //         // Create
-    //         const page = new Page(form.value.title, form.value.subtitle, form.value.text);
-    //         this.pageService.addPage(page)
-    //             .subscribe(
-    //                 data => console.log(data),
-    //                 // error => console.error(error)
-    //             );
-    //     }
-    //     form.resetForm();
-    // }
+    getData() {
+        this.changes.title = this.myForm.value.title;
+        this.changes.subtitle = this.myForm.value.subtitle;
+        return this.changes;
+    }
 
-// TODO: Old Code
-    // onClear(form: NgForm) {
-    //     this.page = null;
-    //     form.resetForm();
-    // }
+    /**
+     * Resets the form data
+     */
+    resetData() {
+        this.myForm.value.title = this.page.title;
+        this.myForm.value.subtitle = this.page.subtitle;
+    }
 
     ngOnInit() {
         this.pageService.pageIsEdit.subscribe(
